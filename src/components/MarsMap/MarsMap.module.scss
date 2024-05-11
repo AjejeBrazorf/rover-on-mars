@@ -1,0 +1,23 @@
+.map {
+  width: 90vw;
+  height: 90svh;
+  overflow: hidden;
+  animation: fromSurfaceToAbove 2s cubic-bezier(0.59, -0.01, 0.26, 1) forwards;
+  animation-play-state: paused;
+  &.animate {
+    animation-play-state: running;
+  }
+}
+
+@keyframes fromSurfaceToAbove {
+  0% {
+    transform: rotate3d(1, 0, 0, 76deg) translate3d(0px, 50%, 50px);
+    border-radius: 100%;
+  }
+
+  100% {
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0px, 0px, 0px);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
