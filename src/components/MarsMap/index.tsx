@@ -11,7 +11,7 @@ import styles from "./MarsMap.module.scss";
 import clsx from "clsx";
 const WEB_MERCATOR_COORDINATE_SYSTEM_ID = "EPSG:4326";
 const MARS_TEXTURE_TILE_SOURCE = "http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/";
-
+const MAP_ZOOM = 5;
 const getNumRows = (z: number) => {
     let nz = 4;
     for (let i = 2; i < z; i++) {
@@ -22,20 +22,21 @@ const getNumRows = (z: number) => {
 
 interface  MarsMapProps {
     center?: [number, number];
+    onMapReady?: () => void
 }
 
-const MarsMap: FC<MarsMapProps> = () => {
+const MarsMap: FC<MarsMapProps> = ({center, onMapReady}) => {
     const mapTargetElement = useRef<HTMLDivElement>(null);
     const [map, setMap] = useState<Map>();
     const [mapReady, setMapReady] = useState(false)
-    const [center, setCenter] = useState<[number, number]>([0,0])
-    const incrementCenter = () => setCenter([center[0] + 5, center[1] + 5])
 
     useEffect(() => {
         const InitializeMap = new Map({
             layers: [
                 new TileLayer({
+                    useInterimTilesOnError: true,
                     source: new XYZ({
+                       wrapX: true,
                         tileUrlFunction: (coordinate) => {
                             return MARS_TEXTURE_TILE_SOURCE +
                                 coordinate[0] + '/' +
@@ -48,10 +49,12 @@ const MarsMap: FC<MarsMapProps> = () => {
             ],
             view: new View({
                 projection: WEB_MERCATOR_COORDINATE_SYSTEM_ID,
-                minZoom: 5,
-                zoom: 5,
-                maxZoom: 5,
-                center: center ?? [0,0]
+                minZoom: 0,
+                zoom: MAP_ZOOM,
+                maxZoom: MAP_ZOOM,
+                center: center ?? [0,0],
+                showFullExtent: false,
+                multiWorld: true,
             }),
             controls: [],
             interactions: []
@@ -61,6 +64,7 @@ const MarsMap: FC<MarsMapProps> = () => {
         setMap(InitializeMap);
         InitializeMap.once('rendercomplete', () => {
             setMapReady(true)
+            onMapReady?.()
         })
 
         return () => InitializeMap.setTarget("");
@@ -73,7 +77,6 @@ const MarsMap: FC<MarsMapProps> = () => {
     }, [center, map]);
     return (
         <>
-            <button style={{position: "absolute", top: 10, right: 10, zIndex: 10}} onClick={incrementCenter}>move</button>
             <div
                 className={clsx(styles.map, {[styles.animate]: mapReady} )}
                 ref={mapTargetElement}
