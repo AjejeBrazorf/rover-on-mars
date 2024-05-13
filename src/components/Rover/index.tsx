@@ -1,5 +1,4 @@
 import {FC, useEffect} from "react";
-import clsx from "clsx";
 import styles from "./Rover.module.scss";
 import {useRive, useStateMachineInput} from "@rive-app/react-canvas";
 import RoverRiveFile from "./rover.riv";
@@ -43,7 +42,7 @@ const Rover:FC<Props> = ({
 
     return (
         <div
-            className={clsx(styles.rover)}
+            className={styles.rover}
             style={{
                 rotate: `${rotation}rad`,
             }}>
