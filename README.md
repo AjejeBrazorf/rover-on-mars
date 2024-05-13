@@ -2,6 +2,8 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It simulates a rover navigating over a map of Mars, allowing users to drive the rover using keyboard controls. The project incorporates basic obstacle detection to simulate a more realistic Mars rover experience.
 
+DEMO: https://roveronmars.netlify.app/
+
 ## Project Features
 
 - **Rover Animation:** The rover is represented as an animated icon on a digital map of Mars.
