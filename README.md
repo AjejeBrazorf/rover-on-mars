@@ -1,8 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mars Rover Simulation
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It simulates a rover navigating over a map of Mars, allowing users to drive the rover using keyboard controls. The project incorporates basic obstacle detection to simulate a more realistic Mars rover experience.
+
+## Project Features
+
+- **Rover Animation:** The rover is represented as an animated icon on a digital map of Mars.
+- **Control Mechanism:** The rover can be driven using the keyboard with the following keystrokes:
+    - `F`: Move forward
+    - `B`: Move backward
+    - `R`: Rotate right
+    - `L`: Rotate left
+- **Obstacle Detection:** The simulation includes obstacles on the map, which the rover will detect and respond to, preventing it from passing through these obstacles.
+
+### Rover Map Overview
+
+Below is an image showing the mocked obstacles on the map where the rover navigates:
+
+![Mars Rover Obstacles](rover_obstacles.png "Mars Rover and Obstacles")
 
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +32,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to see the result. You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Known Limitations and Issues
+ - **Movement Units:** The unit of movement is arbitrary and not defined in meters. Accurate geographical calculations over the Mercator projection used on the map would be required to calculate each movement, given the distortions at the poles.
+ - **Zoom Level Constraints:** The map cannot display higher zoom levels; therefore, to adequately observe the rover and its movements, they are depicted out of scale.
+Learn More
