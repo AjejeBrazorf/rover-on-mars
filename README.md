@@ -40,3 +40,4 @@ Open http://localhost:3000 in your browser to see the result. You can start edit
  - **Movement Units:** The unit of movement is arbitrary and not defined in meters. Accurate geographical calculations over the Mercator projection used on the map would be required to calculate each movement, given the distortions at the poles.
  - **Zoom Level Constraints:** The map cannot display higher zoom levels; therefore, to adequately observe the rover and its movements, they are depicted out of scale.
 Learn More
+ - **Poor UX design**: There is no walkthrough or introduction to the commands to the user, no clear explanation of what is an obstacle  
